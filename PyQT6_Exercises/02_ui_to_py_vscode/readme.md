@@ -1,6 +1,6 @@
 # **Add custom function to PyQT6.uic**
 
-> Author: Lê Minh Nguyên
+> Author: @LeeMinNguyeen
 
 Since VSCode doesn't have External Tool function of PyCharm. I have modified the code of the PyQT6 library to have this extra function. This allowed the user to have this custom function inside of the code file instead of using the terminal.
 
@@ -46,8 +46,8 @@ from .compile_ui import compileUi, compileUiDir, ui_to_py
 from PyQt6 import uic
 
 # Convert the .ui file to a .py file
-ui_file = ".\\PyQT6_Exercises\\HelloWorld\\HelloWorld.ui"
-py_file = ".\\PyQT6_Exercises\\ui_to_py_vscode\\HelloWorld_UI.py"
+ui_file = ".\\PyQT6_Exercises\\01_HelloWorld\\HelloWorld.ui"
+py_file = ".\\PyQT6_Exercises\\02_ui_to_py_vscode\\HelloWorld_UI.py"
 
 uic.ui_to_py(ui_file, py_file)
 ```

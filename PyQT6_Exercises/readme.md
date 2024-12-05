@@ -1,0 +1,1 @@
+Exercises from https://tranduythanh.com/pyqt6-machine-learning/
