@@ -2,11 +2,10 @@
 
 > Author: Lê Minh Nguyên
 
-Since VSCode doesn't have External Tool function of PyCharm. I have modified the code of the PyQT6 library to have this extra function. This allowed the user to have this custom function inside of the code file.
+Since VSCode doesn't have External Tool function of PyCharm. I have modified the code of the PyQT6 library to have this extra function. This allowed the user to have this custom function inside of the code file instead of using the terminal.
 
 > [!NOTE]
-> PyQT6.uic already have the function compileUI() that do that task, But I will add a extra function to make it easier to execute and remember._ 
-
+> PyQT6.uic already have the function ```compileUi()``` that do that task, But I will add a extra function to make it easier to execute and remember.
 
 Since I use a virtual environment, I will modified PyQT6 code of this virtual environment only. But this can be done easily with the main Python aswell
 
@@ -23,6 +22,9 @@ def ui_to_py(ui_file, py_file):
         print(f"Error converting {ui_file} to {py_file}\n Check file path or try PyQt6.uic.pyuic 'ui_file.ui' -o 'py_file.py'")
 ```
 
+> [!TIP]
+> You can add extra exception to have an easier time bug fixing but for education purposes I will do the most basic function.
+
 3. Modify the ```__init__.py``` in the same directory to have the new function
 
 ``` py
@@ -38,10 +40,14 @@ from .compile_ui import compileUi, compileUiDir, ui_to_py
 
 ## Example
 
+[Example code](Convert.py)
+
 ``` py
-from PyQt6.uic import ui_to_py
+from PyQt6 import uic
 
-ui_to_py('ui_file.ui', 'py_file.py')
+# Convert the .ui file to a .py file
+ui_file = ".\\PyQT6_Exercises\\HelloWorld\\HelloWorld.ui"
+py_file = ".\\PyQT6_Exercises\\ui_to_py_vscode\\HelloWorld_UI.py"
+
+uic.ui_to_py(ui_file, py_file)
 ```
-
-
