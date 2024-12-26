@@ -227,6 +227,17 @@ Apache Spark được sử dụng rộng rãi trong nhiều lĩnh vực như ph�
 
 Apache Spark tiếp tục phát triển và đóng vai trò quan trọng trong hệ sinh thái xử lý dữ liệu lớn, cung cấp các công cụ mạnh mẽ cho việc phân tích và xử lý dữ liệu hiệu quả. 
 
+# Các nhóm thảo luận và đưa ra các ưu điểm và nhược điểm của máy học trong 10 phút
+**Lưu ý:**
+- Tập trung vào ứng dụng của máy học trong lĩnh vực kinh tế, kinh doanh, quản lý, tài chính
+- Phần ưu điểm tập trung vào trả lời câu hỏi “Why use machine learning with analytics?”
+
+
+
+
+
+
+
 
 <h1 align="center">
 <strong>CÂU HỎI ÔN TẬP</strong>
