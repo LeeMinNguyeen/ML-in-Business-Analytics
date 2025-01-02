@@ -38,7 +38,7 @@ class TextTranslatorApp:
     def translate_text(self):
         text_to_translate = self.entry.get()
 
-        url = f"https://translation.googleapis.com/language/translate/v2?key={api_key}"
+        url = f"https://translation.googleapis.com/language/translate/v2?key={api_key}" # API key in Environment Variables
         params = {
             'q': text_to_translate,
             'source': self.source_lang.get(),
