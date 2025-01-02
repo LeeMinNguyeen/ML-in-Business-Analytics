@@ -1,6 +1,7 @@
 from numpy import nan as NA
 import pandas as pd
 
+
 data = pd.DataFrame([
     [1., 6.5, 3.],
     [1., NA, NA],
@@ -14,5 +15,7 @@ print("-" * 10)
 cleaned = data.dropna()
 print(cleaned)
 
-cleaned2 = data.dropna(how='all')
+cleaned2 = data.dropna(how='all') # Drop rows that are all NA
+cleaned3 = data.dropna(how="any") # Drop rows that have any NA
+
 print(cleaned2)
