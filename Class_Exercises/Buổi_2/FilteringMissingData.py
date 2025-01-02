@@ -32,10 +32,6 @@ if __name__ == "__main__":
     cleaned = delete_na(data, how = "any")
     print(cleaned)
     print("-" * 10)
-    
-    
-    
-    
 
 
 
