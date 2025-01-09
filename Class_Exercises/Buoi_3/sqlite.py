@@ -1,15 +1,37 @@
 import sqlite3
 import pandas as pd
 
-sqliteConnection = sqlite3.connect('Dataset/databases/Chinook_Sqlite.sqlite')
-cursor = sqliteConnection.cursor()
+def NInvoice(Connection, n):
+    """
+    Return Customer with over N invoice
+    """
+    query = f'''
+        SELECT i.CustomerID, FirstName, LastName, COUNT(*) as InvoiceCount
+        FROM Invoice i
+        JOIN Customer c ON c.CustomerID = i.CustomerID
+        GROUP BY i.CustomerID
+        HAVING COUNT(*) >= {n}
+        '''
+    cursor = Connection.cursor()
 
-query = 'SELECT * FROM InvoiceLine'
+    cursor.execute(query)
+    
+    df = pd.DataFrame(cursor.fetchall())
 
-cursor.execute(query)
+    cursor.close()
+    
+    return df
 
-df = pd.DataFrame(cursor.fetchall())
+def connect(database):
+    try:
+        Connection = sqlite3.connect(f'Dataset/databases/{database}.sqlite')
+    except sqlite3.Error as error:
+        print(f"Error: {error}")
+    
+    return Connection
+        
+if __name__ == "__main__":
 
-print(df)
-
-cursor.close()
+    sqliteConnection = connect("Chinook_Sqlite")
+    
+    print(NInvoice(sqliteConnection, 5))
