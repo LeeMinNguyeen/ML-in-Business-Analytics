@@ -16,7 +16,9 @@ def NInvoice(Connection, n):
 
     cursor.execute(query)
     
-    df = pd.DataFrame(cursor.fetchall())
+    df = pd.DataFrame(cursor.fetchall(),
+                      columns=['CustomerID', 'FirstName', 'LastName', 'InvoiceCount']
+                    )
 
     cursor.close()
     
@@ -26,8 +28,8 @@ def connect(database):
     try:
         Connection = sqlite3.connect(f'Dataset/databases/{database}.sqlite')
     except sqlite3.Error as error:
-        print(f"Error: {error}")
-    
+        raise Exception(f"Error: {error}")
+        
     return Connection
         
 if __name__ == "__main__":
