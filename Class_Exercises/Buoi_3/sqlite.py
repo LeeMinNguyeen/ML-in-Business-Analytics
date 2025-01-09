@@ -37,3 +37,5 @@ if __name__ == "__main__":
     invoice_num = 5 # Giả sử là 5
     
     print(NInvoice(sqliteConnection, invoice_num))
+    
+    sqliteConnection.close()
