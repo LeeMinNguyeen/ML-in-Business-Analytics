@@ -34,4 +34,6 @@ if __name__ == "__main__":
 
     sqliteConnection = connect("Chinook_Sqlite")
     
-    print(NInvoice(sqliteConnection, 5))
+    invoice_num = 5 # Giả sử là 5
+    
+    print(NInvoice(sqliteConnection, invoice_num))
