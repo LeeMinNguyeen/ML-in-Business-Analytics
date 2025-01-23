@@ -1,3 +1,7 @@
+'''
+https://github.com/LeeMinNguyeen/ML-in-Business-Analytics/blob/main/Class_Exercises/Buoi_5/SimpleLinearRegression1.py
+'''
+
 import matplotlib.pyplot as plt
 import numpy as np
 
