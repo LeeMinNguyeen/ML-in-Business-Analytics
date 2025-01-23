@@ -56,4 +56,6 @@ limit 1;
 Câu 9: Chức năng đăng nhập cho nhân viên
 */
 SELECT employee
-where username = 'name' and password = '123'
+where username = 'nameemployee' and password = '123'
+
+select * from employee where username='nguyin' and password='nguyin'

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>606</width>
+    <height>481</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,32 +17,19 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>100</y>
-      <width>451</width>
-      <height>281</height>
+      <x>60</x>
+      <y>140</y>
+      <width>521</width>
+      <height>61</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>39</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 0, 0);
+background-color: rgb(170, 255, 255);
+font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
-     <string>MAIN SCREEN</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonReturnLogin">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>430</y>
-      <width>141</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Return to login</string>
+     <string>Đây là màn hình chính</string>
     </property>
    </widget>
   </widget>
@@ -51,8 +38,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>26</height>
+     <width>606</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

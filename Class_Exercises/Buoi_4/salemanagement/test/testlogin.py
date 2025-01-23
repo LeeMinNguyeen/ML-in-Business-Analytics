@@ -5,7 +5,6 @@ for folder in os.listdir('./Class_Exercises/Buoi_4/salemanagement'):
     sys.path.append(os.path.abspath('./Class_Exercises/Buoi_4/salemanagement/'+folder))
 
 from LoginMainWindowExt import LoginMainWindowEx
-
 app = QApplication([])
 
 mainwiindow = QMainWindow()
