@@ -2,11 +2,56 @@ from LoginMainWindow import Ui_MainWindow
 from PyQt6.QtWidgets import QMessageBox, QApplication, QMainWindow
 from MainProgramExt import MainProgramEx
 
+import mysql.connector
 import os, sys
 for folder in os.listdir('./Class_Exercises/Buoi_4/salemanagement'):
     sys.path.append(os.path.abspath('./Class_Exercises/Buoi_4/salemanagement/'+folder))
 
-from employeeconnector import NhanVienConnector
+from employee import NhanVien
+
+class NhanVienConnector():
+    def __init__(self,server=None,port=None,database=None,
+                 username=None,password=None):
+        if server == None:
+            self.server = "localhost"
+            self.port = 3306
+            self.database = "k22416c_sales"
+            self.username = "root"
+            self.password = "nguyin"
+        else:
+            self.server = server
+            self.port = port
+            self.database = database
+            self.username = username
+            self.password = password
+            
+    def connects(self):
+        try:
+            self.conn = mysql.connector.connect(host=self.server,
+                                                port=self.port,
+                                                database=self.database,
+                                                user=self.username,
+                                                password=self.password)
+            print("Kết nối thành công")
+        except Exception as e:
+            print("Lỗi kết nối",e)
+    
+    def dang_nhap(self,username,password):
+        cursor=self.conn.cursor()
+        sql=f"select * from employee where username='{username}' and password='{password}'"
+        cursor.execute(sql)
+        dataset = cursor.fetchone()
+        print(dataset)
+        nv = None# giả sử không tìm thấy nhân viên đúng theo USERname +password
+        
+        if dataset != None:
+            id, manhanvien, tennhanvien, username, password, isdeleted = dataset
+            #vào được đây tức là có nhân viên
+            nv=NhanVien(id,manhanvien,tennhanvien,username,password,isdeleted)
+        
+        cursor.close()
+        
+        return nv
 
 class LoginMainWindowEx(Ui_MainWindow):
     def __init__(self):
@@ -28,6 +73,9 @@ class LoginMainWindowEx(Ui_MainWindow):
         password=self.lineEditPassword.text()
 
         self.nvconnector.connects()
+        
+        print("Username:",username)
+        print("Password:",password)
         
         self.nvlogin = self.nvconnector.dang_nhap(username, password)
         
