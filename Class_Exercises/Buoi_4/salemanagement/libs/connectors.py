@@ -1,3 +1,7 @@
+import os, sys
+for folder in os.listdir('./Class_Exercises/Buoi_4/salemanagement'):
+    sys.path.append(os.path.abspath('./Class_Exercises/Buoi_4/salemanagement/'+folder))
+
 import mysql.connector
 
 class MySQLConnector:
@@ -24,11 +28,6 @@ class MySQLConnector:
                                                 user=self.username,
                                                 password=self.password)
             print("Kết nối thành công")
-            return self.conn
         except Exception as e:
             print("Lỗi kết nối",e)
-
-    
-if __name__ == "__main__":
-    myconn = MySQLConnector()
-    myconn.connects()
+            
