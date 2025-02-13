@@ -1,9 +1,8 @@
 import mysql.connector
 import os, sys
-for folder in os.listdir('./Class_Exercises/Buoi_4/salemanagement'):
-    sys.path.append(os.path.abspath('./Class_Exercises/Buoi_4/salemanagement/'+folder))
+for folder in os.listdir('./salemanagement'):
+    sys.path.append(os.path.abspath('./salemanagement/'+folder))
 
-from connectors import MySQLConnector
 from employeeconnector import NhanVienConnector
 
 from LoginMainWindow import Ui_MainWindow

@@ -17,32 +17,14 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>100</y>
-      <width>451</width>
-      <height>281</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>39</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>MAIN SCREEN</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonReturnLogin">
-    <property name="geometry">
-     <rect>
-      <x>330</x>
-      <y>430</y>
+      <x>340</x>
+      <y>240</y>
       <width>141</width>
-      <height>28</height>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Return to login</string>
+     <string>Help me</string>
     </property>
    </widget>
   </widget>
@@ -52,41 +34,50 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSystem">
+   <widget class="QMenu" name="menuH_th_ng">
     <property name="title">
-     <string>System</string>
+     <string>Hệ thống</string>
     </property>
-    <addaction name="actionThongtintaikhoan"/>
     <addaction name="separator"/>
-    <addaction name="actionchangepassword"/>
-    <addaction name="actionSetting"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
+    <addaction name="actionthongtintaikhoan"/>
+    <addaction name="actiondoimatkhau"/>
+    <addaction name="actioncauhinhhethong"/>
+    <addaction name="actionthoatphanmem"/>
+    <addaction name="separator"/>
    </widget>
-   <addaction name="menuSystem"/>
+   <addaction name="menuH_th_ng"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionThongtintaikhoan">
+  <action name="actionTho_t_ph_n_m_m">
    <property name="text">
-    <string>Thông tin người dùng</string>
+    <string>Thoát phần mêm</string>
    </property>
   </action>
-  <action name="actionchangepassword">
+  <action name="actiondoimatkhau">
    <property name="text">
     <string>Đổi mật khẩu</string>
    </property>
   </action>
-  <action name="actionSetting">
+  <action name="actioncauhinhhethong">
    <property name="text">
     <string>Cấu hình hệ thống</string>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="actionthoatphanmem">
    <property name="text">
-    <string>Exit</string>
+    <string>Thoát phần mềm</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionthongtintaikhoan">
+   <property name="text">
+    <string>Thông tin tài khoản</string>
    </property>
   </action>
  </widget>
