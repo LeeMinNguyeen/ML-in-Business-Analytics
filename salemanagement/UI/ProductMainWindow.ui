@@ -53,30 +53,6 @@
               <height>16777215</height>
              </size>
             </property>
-            <item>
-             <property name="text">
-              <string>DM1-Laptop</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>DM2-Điện Thoại</string>
-             </property>
-             <property name="foreground">
-              <brush brushstyle="NoBrush">
-               <color alpha="255">
-                <red>255</red>
-                <green>0</green>
-                <blue>0</blue>
-               </color>
-              </brush>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>DM3-Phụ Kiện Laptop</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item>
