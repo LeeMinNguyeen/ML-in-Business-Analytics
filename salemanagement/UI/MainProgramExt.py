@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QMessageBox, QApplication, QMainWindow
 import sys
 from MainProgram import Ui_MainWindow
+from ProductMainWindowExt import ProductMainWindowEx
 
 class MainProgramEx(Ui_MainWindow):
     def setupUi(self, MainWindow):
@@ -10,6 +11,13 @@ class MainProgramEx(Ui_MainWindow):
     
     def setupSignalandSlot(self):
         self.actionExit.triggered.connect(self.exitProgram)
+        self.actionCategoryManagement.triggered.connect(self.showCategoryManagement)
+    
+    def showCategoryManagement(self):
+        self.productmainwindow = QMainWindow()
+        self.productui = ProductMainWindowEx()
+        self.productui.setupUi(self.productmainwindow)
+        self.productui.showWindow()
     
     def exitProgram(self):
         sys.exit(0)

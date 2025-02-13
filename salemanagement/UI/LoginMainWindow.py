@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\\Class_Exercises\\Buoi_4\\salemanagement\\UI\\LoginMainWindow.ui'
+# Form implementation generated from reading ui file './salemanagement/UI/LoginMainWindow.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
@@ -14,7 +14,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(779, 642)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\\\Class_Exercises\\\\Buoi_4\\\\salemanagement\\\\UI\\../Images/Cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("./salemanagement/UI\\../Images/Cart.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -66,7 +66,7 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.pushButtonLogin.setFont(font)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(".\\\\Class_Exercises\\\\Buoi_4\\\\salemanagement\\\\UI\\../Images/Login.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap("./salemanagement/UI\\../Images/Login.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButtonLogin.setIcon(icon1)
         self.pushButtonLogin.setObjectName("pushButtonLogin")
         self.pushButtonExit = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -75,19 +75,19 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.pushButtonExit.setFont(font)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(".\\\\Class_Exercises\\\\Buoi_4\\\\salemanagement\\\\UI\\../Images/Exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap("./salemanagement/UI\\../Images/Exit.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButtonExit.setIcon(icon2)
         self.pushButtonExit.setObjectName("pushButtonExit")
         self.label_4 = QtWidgets.QLabel(parent=self.centralwidget)
         self.label_4.setGeometry(QtCore.QRect(0, 200, 281, 271))
         self.label_4.setText("")
-        self.label_4.setPixmap(QtGui.QPixmap(".\\\\Class_Exercises\\\\Buoi_4\\\\salemanagement\\\\UI\\../Images/User.png"))
+        self.label_4.setPixmap(QtGui.QPixmap("./salemanagement/UI\\../Images/User.png"))
         self.label_4.setScaledContents(True)
         self.label_4.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.NoTextInteraction)
         self.label_4.setObjectName("label_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 779, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 779, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
@@ -102,6 +102,8 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Login"))
         self.label.setText(_translate("MainWindow", "LOGIN"))
+        self.lineEditUsername.setText(_translate("MainWindow", "nguyin"))
+        self.lineEditPassword.setText(_translate("MainWindow", "nguyin"))
         self.checkBoxSaveLogin.setText(_translate("MainWindow", "Lưu thông tin đăng nhập"))
         self.label_2.setText(_translate("MainWindow", "Username"))
         self.label_3.setText(_translate("MainWindow", "Password"))

@@ -7,49 +7,41 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>651</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>240</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Help me</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuH_th_ng">
+   <widget class="QMenu" name="menuSystem">
     <property name="title">
      <string>Hệ thống</string>
     </property>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-    <addaction name="actionthongtintaikhoan"/>
-    <addaction name="actiondoimatkhau"/>
-    <addaction name="actioncauhinhhethong"/>
-    <addaction name="actionthoatphanmem"/>
-    <addaction name="separator"/>
+    <addaction name="actionAccountInfo"/>
+    <addaction name="actionChangePassword"/>
+    <addaction name="actionSetting"/>
+    <addaction name="actionExit"/>
    </widget>
-   <addaction name="menuH_th_ng"/>
+   <widget class="QMenu" name="menuManagement">
+    <property name="title">
+     <string>Quản lý</string>
+    </property>
+    <addaction name="actionCategoryManagement"/>
+    <addaction name="actionOrderManagement"/>
+    <addaction name="actionEmployeeManagement"/>
+   </widget>
+   <addaction name="menuSystem"/>
+   <addaction name="menuManagement"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionTho_t_ph_n_m_m">
@@ -57,27 +49,55 @@
     <string>Thoát phần mêm</string>
    </property>
   </action>
-  <action name="actiondoimatkhau">
+  <action name="actionChangePassword">
    <property name="text">
     <string>Đổi mật khẩu</string>
    </property>
   </action>
-  <action name="actioncauhinhhethong">
+  <action name="actionSetting">
    <property name="text">
     <string>Cấu hình hệ thống</string>
    </property>
   </action>
-  <action name="actionthoatphanmem">
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Images/Exit.png</normaloff>../Images/Exit.png</iconset>
+   </property>
    <property name="text">
     <string>Thoát phần mềm</string>
    </property>
-   <property name="shortcut">
-    <string>Esc</string>
-   </property>
   </action>
-  <action name="actionthongtintaikhoan">
+  <action name="actionAccountInfo">
    <property name="text">
     <string>Thông tin tài khoản</string>
+   </property>
+  </action>
+  <action name="actionCategoryManagement">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Images/stock.png</normaloff>../Images/stock.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quản lý sản phẩm - danh mục</string>
+   </property>
+  </action>
+  <action name="actionOrderManagement">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Images/Order.png</normaloff>../Images/Order.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quản lý đơn hàng</string>
+   </property>
+  </action>
+  <action name="actionEmployeeManagement">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Images/employee.png</normaloff>../Images/employee.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quản lý nhân viên</string>
    </property>
   </action>
  </widget>

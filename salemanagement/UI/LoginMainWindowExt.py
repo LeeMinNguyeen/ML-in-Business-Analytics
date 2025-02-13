@@ -1,4 +1,3 @@
-import mysql.connector
 import os, sys
 for folder in os.listdir('./salemanagement'):
     sys.path.append(os.path.abspath('./salemanagement/'+folder))
