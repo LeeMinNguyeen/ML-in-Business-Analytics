@@ -2,7 +2,7 @@
 Câu 1: Chọn tất cả sản phẩm
 */
 select *
-from product
+from productproduct
 
 /*
 Câu 2: Xếp sản phẩm theo đơn giá giảm dần
@@ -55,7 +55,9 @@ limit 1;
 /*
 Câu 9: Chức năng đăng nhập cho nhân viên
 */
-SELECT employee
+SELECT employeecategory
 where username = 'nameemployee' and password = '123'
 
 select * from employee where username='nguyin' and password='nguyin'
+
+select * from category

@@ -27,7 +27,6 @@ class MySQLConnector:
                                                 database=self.database,
                                                 user=self.username,
                                                 password=self.password)
-            print("Kết nối thành công")
         except Exception as e:
             print("Lỗi kết nối",e)
             
