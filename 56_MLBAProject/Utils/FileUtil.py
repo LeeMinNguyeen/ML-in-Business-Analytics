@@ -1,5 +1,6 @@
 import pickle
 import traceback
+
 class FileUtil:
     @staticmethod
     def saveModel(model,filename):

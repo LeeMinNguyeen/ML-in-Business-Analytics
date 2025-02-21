@@ -1,42 +1,37 @@
-import random
-from random import random
 import plotly.graph_objects as go
 
-from PyQt6 import QtGui, QtCore
-from PyQt6.QtCore import Qt, QSize
-from PyQt6.QtGui import QAction, QIcon, QPixmap
-from PyQt6.QtWidgets import QMessageBox, QTableWidgetItem, QMainWindow, QDialog, QComboBox, QPushButton, QCheckBox, \
-    QListWidgetItem, QFileDialog
+import os, sys
+for folder in os.listdir('./56_MLBAProject'):
+    sys.path.append(os.path.abspath('./56_MLBAProject/'+folder))
+
+from DatabaseConnectEx import DatabaseConnectEx
+
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QMessageBox, QTableWidgetItem, QMainWindow, QFileDialog
 from matplotlib import pyplot as plt
 import seaborn as sns
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
-from Connectors.Connector import Connector
-from Models.PurchaseLinearRegression import PurchaseLinearRegression
-from Models.PurchaseStatistic import PurchaseStatistic
-from UI.ChartHandle import ChartHandle
-from UI.DatabaseConnectEx import DatabaseConnectEx
-from UI.MainWindow import Ui_MainWindow
-import traceback
+# from Connectors import Connector
+from PurchaseLinearRegression import PurchaseLinearRegression
+from PurchaseStatistic import PurchaseStatistic
+from ChartHandle import ChartHandle
 
-
-import matplotlib
+from MainWindow import Ui_MainWindow
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 
-
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import random
-
 
 class MainWindowEx(Ui_MainWindow):
     def __init__(self):
         self.purchaseLinearRegression = PurchaseLinearRegression()
-        self.databaseConnectEx=DatabaseConnectEx()
-        self.databaseConnectEx.parent=self
-        self.chartHandle= ChartHandle()
+        self.databaseConnectEx = DatabaseConnectEx()
+        self.databaseConnectEx.parent = self
+        self.chartHandle = ChartHandle()
+    
     def setupUi(self, MainWindow):
         super().setupUi(MainWindow)
         self.MainWindow=MainWindow
@@ -65,8 +60,10 @@ class MainWindowEx(Ui_MainWindow):
         self.pushButtonSaveModel.clicked.connect(self.processSaveTrainedModel)
         self.pushButtonLoadModel.clicked.connect(self.processLoadTrainedModel)
         self.pushButtonPredict.clicked.connect(self.processPrediction)
+    
     def show(self):
         self.MainWindow.show()
+    
     def checkEnableWidget(self,flag=True):
         self.pushButtonPurchaseRatesByGender.setEnabled(flag)
         self.pushButtonPurchaseRatesByAgeGroup.setEnabled(flag)
@@ -88,12 +85,15 @@ class MainWindowEx(Ui_MainWindow):
 
         # adding tool bar to the layout
         self.verticalLayoutPlot.addWidget(self.toolbar)
+        
         # adding canvas to the layout
         self.verticalLayoutPlot.addWidget(self.canvas)
+    
     def openDatabaseConnectUI(self):
         dbwindow = QMainWindow()
         self.databaseConnectEx.setupUi(dbwindow)
         self.databaseConnectEx.show()
+    
     def showDataIntoTableWidget(self,df):
         self.tableWidgetStatistic.setRowCount(0)
         self.tableWidgetStatistic.setColumnCount(len(df.columns))
@@ -124,7 +124,6 @@ class MainWindowEx(Ui_MainWindow):
         columnStatistic = "count"
         title = "Categories Distribution"
         legend = False
-        #self.visualizePieChart(df, columnLabel, columnStatistic, title, legend)
         self.chartHandle.visualizePieChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, legend)
 
     def showPurchaseRatesByGender(self):
@@ -142,7 +141,6 @@ class MainWindowEx(Ui_MainWindow):
         title = "Gender Distribution"
         legend = True
         self.chartHandle.visualizePieChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, legend)
-        #self.visualizePieChart(df, columnLabel, columnStatistic, title, legend)
 
     def showSalesFlucuationsByYearAndMonth(self):
         self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
@@ -153,8 +151,7 @@ class MainWindowEx(Ui_MainWindow):
         self.showDataIntoTableWidget(df)
         self.chartHandle.visualizeLinePlotChart(self.figure,self.canvas, self.purchaseLinearRegression.dfMonthlyAndYearSalesAmount, "month", "sales_amount",
                                     "Monthly Variation in Sales Amount Over Years", hue="year", xticks=True)
-        #self.visualizeLinePlotChart(self.purchaseLinearRegression.dfMonthlyAndYearSalesAmount, "month", "sales_amount",
-        #                            "Monthly Variation in Sales Amount Over Years", hue="year", xticks=True)
+    
     def showPurchaseRatesByAgeGroup(self):
         self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
         self.purchaseLinearRegression.execPurchaseHistory()
@@ -171,7 +168,7 @@ class MainWindowEx(Ui_MainWindow):
         title= "Age Distribution %s~%s"%(fromAge,toAge)
         hue = None
         self.chartHandle.visualizeLinePlotChart(self.figure,self.canvas,df, columnLabel, columnStatistic,title, hue)
-        #self.visualizeLinePlotChart(df, columnLabel, columnStatistic,title, hue)
+    
     def showPurchaseCountingByCategory(self):
         self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
         self.purchaseLinearRegression.execPurchaseHistory()
@@ -183,20 +180,16 @@ class MainWindowEx(Ui_MainWindow):
         legend = False
         hue=None
         self.chartHandle.visualizeLinePlotChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, hue)
-        #self.visualizePieChart(df, columnLabel, columnStatistic, title, legend)
+    
     def showPurchaseValueByCategory(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processCategorySpending()
         self.showDataIntoTableWidget(df)
         columnLabel = "category"
         columnStatistic = "price"
         title = "Distribution category and Spending"
         self.chartHandle.visualizeBarChart(self.figure,self.canvas,df,columnLabel,columnStatistic,title)
-        #self.visualizeBarChart(df,columnLabel,columnStatistic,title)
+    
     def showPurchaseByCategoryAndGender(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processGenderAndCategoryCounter()
         self.showDataIntoTableWidget(df)
         df=self.purchaseLinearRegression.df
@@ -205,10 +198,8 @@ class MainWindowEx(Ui_MainWindow):
         hue="gender"
         title = "Distribution gender and category"
         self.chartHandle.visualizeMultiBarChart(self.figure,self.canvas,df, columnLabel, columnStatistic,hue, title)
-        #self.visualizeMultiBarChart(df, columnLabel, columnStatistic,hue, title)
+    
     def showPaymentMethod(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processPaymentMethod()
         self.showDataIntoTableWidget(df)
         columnLabel = "payment_method"
@@ -216,10 +207,8 @@ class MainWindowEx(Ui_MainWindow):
         title = "Payment Distribution"
         legend = False
         self.chartHandle.visualizePieChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, legend)
-        #self.visualizePieChart(df, columnLabel, columnStatistic, title, legend)
+    
     def showPurchaseRatesByShoppingMall(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processShoppingMall()
         self.showDataIntoTableWidget(df)
         columnLabel = "shopping_mall"
@@ -227,10 +216,8 @@ class MainWindowEx(Ui_MainWindow):
         title = "Shopping Mall Distribution"
         legend = False
         self.chartHandle.visualizePieChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, legend)
-        #self.visualizePieChart(df, columnLabel, columnStatistic, title, legend)
+    
     def showProductSpendingByGender(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processGenderCategorySpending()
         self.showDataIntoTableWidget(df)
         columnLabel = "category"
@@ -239,22 +226,16 @@ class MainWindowEx(Ui_MainWindow):
         title = "Male and Female category Total Price Spend"
         legend = False
         self.chartHandle.visualizeBarPlot(self.figure,self.canvas,df, columnLabel, columnStatistic,hue, title)
-        #self.visualizeBarPlot(df, columnLabel, columnStatistic,hue, title)
 
     def showShowPurchaseFrequenceByAge(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
         df = self.purchaseLinearRegression.processAgeOrderFrequence()
         self.showDataIntoTableWidget(df)
         columnLabel = "age"
         columnStatistic = "count"
         title = "Age VS Order Frequence"
         self.chartHandle.visualizeScatterPlot(self.figure,self.canvas,df, columnLabel,columnStatistic, title)
-        #self.visualizeScatterPlot(df, columnLabel,columnStatistic, title)
 
     def showpushButtonSalesFluctuationsByMonth(self):
-        # self.purchaseLinearRegression.connector = self.databaseConnectEx.connector
-        # self.purchaseLinearRegression.execPurchaseHistory()
 
         df=self.purchaseLinearRegression.processMonthlySalesAmount()
         print(df)
@@ -265,6 +246,7 @@ class MainWindowEx(Ui_MainWindow):
         title = "Monthly Variation in Sales Amount"
         hue = None
         self.chartHandle.visualizeLinePlotChart(self.figure,self.canvas,df, columnLabel, columnStatistic, title, hue)
+    
     def processTrainModel(self):
         columns_input=["gender","age"]
         column_target="price"
@@ -286,12 +268,14 @@ class MainWindowEx(Ui_MainWindow):
         buttons = QMessageBox.StandardButton.Yes
         dlg.setStandardButtons(buttons)
         button = dlg.exec()
+    
     def processEvaluateTrainedModel(self):
         result = self.purchaseLinearRegression.evaluate()
         self.lineEditMAE.setText(str(result.MAE))
         self.lineEditMSE.setText(str(result.MSE))
         self.lineEditRMSE.setText(str(result.RMSE))
         self.lineEditR2SCore.setText(str(result.R2_SCORE))
+    
     def processPickSavePath(self):
         filters = "trained model file (*.zip);;All files(*)"
         filename, selected_filter = QFileDialog.getSaveFileName(
@@ -299,6 +283,7 @@ class MainWindowEx(Ui_MainWindow):
             filter=filters,
         )
         self.lineEditPath.setText(filename)
+    
     def processSaveTrainedModel(self):
         trainedModelPath=self.lineEditPath.text()
         if trainedModelPath=="":
@@ -311,6 +296,7 @@ class MainWindowEx(Ui_MainWindow):
         buttons = QMessageBox.StandardButton.Yes
         dlg.setStandardButtons(buttons)
         button = dlg.exec()
+    
     def processLoadTrainedModel(self):
         # setup for QFileDialog
         filters = "trained model file (*.zip);;All files(*)"
@@ -329,6 +315,7 @@ class MainWindowEx(Ui_MainWindow):
         buttons = QMessageBox.StandardButton.Yes
         dlg.setStandardButtons(buttons)
         button = dlg.exec()
+    
     def processPrediction(self):
         gender = self.lineEditGender.text()
         age = int(self.lineEditAge.text())
@@ -338,3 +325,13 @@ class MainWindowEx(Ui_MainWindow):
         else:
             predicted_price = self.purchaseLinearRegression.predictPriceFromGenderAndAge(gender, age)
         self.lineEditPredictedPrice.setText(str(predicted_price[0]))
+        
+if __name__ == "__main__":
+    from PyQt6.QtWidgets import QApplication, QMainWindow
+
+    qApp=QApplication([])
+    qmainWindow=QMainWindow()
+    window=MainWindowEx()
+    window.setupUi(qmainWindow)
+    window.show()
+    qApp.exec()

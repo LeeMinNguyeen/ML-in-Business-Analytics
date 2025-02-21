@@ -1,3 +1,7 @@
+import os, sys
+for folder in os.listdir('./56_MLBAProject'):
+    sys.path.append(os.path.abspath('./56_MLBAProject/'+folder))
+
 import pandas as pd
 from matplotlib import pyplot as plt
 
@@ -7,10 +11,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error,r2_score
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
-from Models.MetricsResult import MetricsResult
-from Models.PurchaseMLModel import PurchaseMLModel
-from Models.TrainedModel import TrainedModel
-from Utils.FileUtil import FileUtil
+from MetricsResult import MetricsResult
+from PurchaseMLModel import PurchaseMLModel
+from TrainedModel import TrainedModel
+from FileUtil import FileUtil
 
 class PurchaseLinearRegression(PurchaseMLModel):
     def __init__(self,connector=None):

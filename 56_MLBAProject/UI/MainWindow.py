@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1287, 852)
+        MainWindow.resize(1287, 849)
         font = QtGui.QFont()
         font.setFamily("Montserrat SemiBold")
         MainWindow.setFont(font)
@@ -413,7 +413,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Nguyên"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Machine Learning"))
         self.groupBox_3.setTitle(_translate("MainWindow", "List of Data:"))
         item = self.tableWidgetStatistic.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Gender"))

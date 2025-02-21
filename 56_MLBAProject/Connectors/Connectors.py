@@ -1,7 +1,11 @@
-#python -m pip install mysql-connector-python
+import os, sys
+for folder in os.listdir('./56_MLBAProject'):
+    sys.path.append(os.path.abspath('./56_MLBAProject/'+folder))
+
 import mysql.connector
 import traceback
 import pandas as pd
+
 class Connector:
     def __init__(self,server=None, port=None, database=None, username=None, password=None):
         self.server=server
@@ -9,6 +13,7 @@ class Connector:
         self.database=database
         self.username=username
         self.password=password
+    
     def connect(self):
         try:
             self.conn = mysql.connector.connect(
@@ -38,6 +43,7 @@ class Connector:
         except:
             traceback.print_exc()
         return None
+    
     def getTablesName(self):
         cursor = self.conn.cursor()
         cursor.execute("Show tables;")
@@ -46,3 +52,17 @@ class Connector:
         for item in results:
             tablesName.append([tableName for tableName in item][0])
         return tablesName
+    
+if __name__ == "__main__":
+    try:
+        connector = Connector()
+        connector.server = "localhost"
+        connector.port = 3306
+        connector.database = "lecturer_retails"
+        connector.username = "root"
+        connector.password = "nguyin"
+        connector.connect()
+        print("Connect database successful!")
+    except:
+        traceback.print_exc()
+        print("Connect database failed")
