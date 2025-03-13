@@ -1,0 +1,53 @@
+import pandas as pd
+import json
+from DataObject import Courses
+
+class xlsxFile:
+    def __init__(self, file):
+        self.file = file
+        self.jsondata = []
+    
+    def makeCourselist(self, data):
+        course = Courses(
+            course_name = str(data[2]),
+            course_code = data[1],
+            course_category= data[3],
+            course_language= data[4],
+            course_semester = str(data[5]),
+        )
+        self.jsondata.append(course.jsonify())
+        
+    def exportJson(self):
+        with open('NestedPlot\Data\dataset-416.json', 'w', encoding='utf-8') as f:
+            json.dump(self.jsondata, f, indent=4)
+    
+    def handleMerge(self, data):
+        prev_row = tuple(data.iloc[0])
+        count = 0
+        for row in data.iterrows():
+            print(type(row[1][0]))
+            if row[1][0] == 'nan':
+                if count == 1:
+                    count = 0
+                    self.makeCourselist(row[1])
+                    continue
+                data[row[1][0], row[1][1]] = [prev_row[1][0], prev_row[1][1]]
+                row[1][0], row[1][1] = prev_row[1][0], prev_row[1][1]
+                print(row[1])
+                self.makeCourselist(row[1])
+                prev_row = row
+                count = 1
+                continue
+            self.makeCourselist(row[1])
+            count = 0
+    
+    def getData(self):
+        data = pd.read_excel(self.file)
+        
+        self.handleMerge(data)
+        
+        
+if __name__ == '__main__':
+    file = xlsxFile('NestedPlot\Data\dataset-416.xlsx')
+    file.getData()
+    file.exportJson()
