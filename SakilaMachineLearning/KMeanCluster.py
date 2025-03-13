@@ -3,6 +3,8 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import silhouette_score
 import pandas as pd
+import matplotlib.pyplot as plt
+
 
 from ConnectMySQL import Connector
 import io
@@ -86,20 +88,7 @@ def find_optimal_clusters(X, max_k=10):
         if k > 1:
             score = silhouette_score(X, kmeans.labels_)
             silhouette_scores.append(score)
-
-    return inertia, silhouette_scores
-
-# Home route
-@app.route('/')
-def home():
-    return render_template('home.html')
-
-# Route to find optimal clusters
-@app.route('/find_optimal_clusters')
-def optimal_clusters():
-    inertia, silhouette_scores = find_optimal_clusters(X)
-    import matplotlib.pyplot as plt
-
+            
     # Plot inertia
     plt.figure(figsize=(10, 6))
     plt.plot(range(2, len(inertia) + 2), inertia, marker='o', linestyle='--')
@@ -109,7 +98,7 @@ def optimal_clusters():
     inertia_img = io.BytesIO()
     plt.savefig(inertia_img, format='png')
     inertia_img.seek(0)
-    with open('SakilaMachineLearning\\templates\\images\\inertia_plot.png', 'wb') as f:
+    with open('SakilaMachineLearning\\static\\images\\inertia_plot.png', 'wb') as f:
         f.write(inertia_img.getvalue())
     
     # Plot silhouette scores
@@ -121,20 +110,16 @@ def optimal_clusters():
     silhouette_img = io.BytesIO()
     plt.savefig(silhouette_img, format='png')
     silhouette_img.seek(0)
-    silhouette_plot_url = base64.b64encode(silhouette_img.getvalue()).decode()
+    with open('SakilaMachineLearning\\static\\images\\silhoutte_img.png', 'wb') as f:
+        f.write(silhouette_img.getvalue())
 
-    return render_template("optimal_cluster.html")
-# Route to perform clustering
-@app.route('/perform_clustering', methods=['POST'])
-def perform_clustering():
-    cluster = request.json.get('cluster', 3)
+def perform_cluster():
+    cluster = 3
     kmeans = KMeans(n_clusters=cluster, init='k-means++', max_iter=500, random_state=42)
     y_kmeans = kmeans.fit_predict(X)
     centroids = scaler.inverse_transform(kmeans.cluster_centers_)
     df['cluster'] = y_kmeans
     
-    import matplotlib.pyplot as plt
-
     # Plot the clusters
     plt.figure(figsize=(10, 6))
     plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=50, cmap='viridis')
@@ -147,9 +132,27 @@ def perform_clustering():
     img = io.BytesIO()
     plt.savefig(img, format='png')
     img.seek(0)
-    plot_url = base64.b64encode(img.getvalue()).decode()
+    with open('SakilaMachineLearning\\static\\images\\cluster_img.png', 'wb') as f:
+        f.write(img.getvalue())
 
-    return jsonify({'centroids': centroids.tolist(), 'clusters': y_kmeans.tolist(), 'plot_url': plot_url})
+# Home route
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+# Route to find optimal clusters
+@app.route('/find_optimal_clusters')
+def optimal_clusters():
+    find_optimal_clusters(X)
+
+    return render_template("optimal_cluster.html")
+
+# Route to perform clustering
+@app.route('/perform_clustering')
+def perform_clustering():
+    perform_cluster()
+
+    return render_template("cluster.html")
 
 # Route to get customer by cluster
 @app.route('/get_customer_by_cluster/<int:cluster_id>')
