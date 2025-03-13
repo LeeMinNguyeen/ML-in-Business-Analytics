@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - KMeanCluster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to KMeanCluster</h1>
+    <p>Select an option below to proceed:</p>
+    <a href="/find_optimal_clusters" class="button">find_optimal_clusters</a>
+    <a href="/perform_clustering" class="button">perform_clustering</a>
+    <a href="/get_customer_by_cluster/<int:cluster_id>" class="button">get_customer_by_cluster</a>
+</body>
+</html>
