@@ -8,7 +8,7 @@ from MainWindow import Ui_MainWindow
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QMessageBox, QTableWidgetItem, QMainWindow, QFileDialog
+from PyQt6.QtWidgets import QTableWidgetItem, QMainWindow
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
