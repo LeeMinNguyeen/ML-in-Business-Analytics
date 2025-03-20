@@ -6,9 +6,8 @@ from machinelearning import Kmeans_model, LinearRegress
 from MainWindow import Ui_MainWindow
 
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtWidgets import QApplication
 from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QTableWidgetItem, QMainWindow
+from PyQt6.QtWidgets import QTableWidgetItem, QMainWindow, QMessageBox
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -88,13 +87,21 @@ class MainWindow(Ui_MainWindow):
         self.verticalLayout_3.addWidget(self.canvas)
     
     def showCluster(self, cluster):
+        try:
+            dataframe = self.model.GetCustomerDetailsbyCluster(cluster)
+        except:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Icon.Critical)
+            msg.setText("Error: Unable to retrieve cluster details.")
+            msg.setWindowTitle("Error")
+            msg.exec()
+            return
         
-        dataframe = self.model.GetCustomerDetailsbyCluster(cluster)
-    
         self.tableWidget_2.setRowCount(0)
         self.tableWidget_2.setColumnCount(0)
         if dataframe is None:
             return
+        
         self.tableWidget_2.setColumnCount(len(dataframe.columns))
         self.tableWidget_2.setRowCount(len(dataframe.index))
         self.tableWidget_2.setHorizontalHeaderLabels(dataframe.columns)
